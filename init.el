@@ -16,7 +16,10 @@
 (setq my-def-theme 'base16-monokai)
 (load-theme my-def-theme t)
 (set-frame-font "Iosevka Type" nil t)
-(when window-system (set-frame-size (selected-frame) 120 60))
+;; For things that aren't safe on text terminals
+(when window-system
+  (set-frame-size (selected-frame) 120 60)
+  (define-key input-decode-map "\C-i" [C-i]))
 ;; Disable tool bar
 (tool-bar-mode -1)
 ;; Change cursor in non-active window
@@ -42,9 +45,33 @@
 ;; Load pretty symbols config
 (load "~/.emacs.d/init_pretty.el")
 
+;; Load emacs settings
+(load "~/.emacs.d/init_latex.el")
+
+;; Load yas
+(load "~/.emacs.d/init_yas.el")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MODES;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; ace-jump
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+;; you can select the key you prefer to
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;; enable a more powerful jump back function from ace jump mode
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
 ;; google-this
 (google-this-mode 1)
@@ -61,11 +88,6 @@
       (concat (concat "\"C:/Program Files (x86)/Microsoft Visual Studio/2017/"
 		      "BuildTools/Common7/IDE/CommonExtensions/Microsoft/")
 	      "FSharp/fsc.exe\""))
-
-;; merlin
-(use-package merlin
-  :config 
-  (setq merlin-command "~/.emacs.d/merlin-start.bat"))
 
 ;; cider
 (use-package cider
@@ -98,7 +120,7 @@
 ;; Column enforcing
 (require 'column-enforce-mode)
 (setq column-enforce-column 80)
-(setq default-fill-column 80)
+(setq-default fill-column 80)
 (add-hook 'prog-mode-hook 'column-enforce-mode)
 (add-hook 'text-mode-hook 'column-enforce-mode)
 (setq column-number-mode t)
@@ -123,13 +145,6 @@
   (setq cursor-type 'box))
 (add-hook 'god-mode-enabled-hook 'god-enabled-cursor)
 (add-hook 'god-mode-disabled-hook 'god-disabled-cursor)
-
-;; AucTeX
-(server-start)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t)
-(put 'upcase-region 'disabled nil)
-(add-hook 'emacs-lisp-mode-hook 'turn-on-font-lock)
 
 ;; Company mode 
 (add-hook 'after-init-hook 'global-company-mode)
@@ -167,7 +182,7 @@
  '(org-icalendar-use-scheduled (quote (event-if-not-todo event-if-todo todo-start)))
  '(package-selected-packages
    (quote
-    (cubicaltt google-maps google-translate google-this auto-complete merlin tuareg poporg ggtags cider undo-tree spinner slime-company simple-httpd queue purty-mode purple-haze-theme punpun-theme origami orgtbl-join orgtbl-ascii-plot org-ref org-plus-contrib org-beautify-theme org-alert org memoize js2-mode green-phosphor-theme god-mode flyspell-correct-popup flycheck django-snippets django-mode django-manage column-enforce-mode clojure-mode base16-theme avy auctex ample-theme 0blayout)))
+    (achievements ace-jump-buffer ace-isearch ace-jump-mode boogie-friends fold-this org-edit-latex magic-latex-buffer latex-math-preview cdlatex ac-math iasm-mode company-coq proof-general cubicaltt google-maps google-translate google-this auto-complete merlin tuareg poporg ggtags cider undo-tree spinner slime-company simple-httpd queue purty-mode purple-haze-theme punpun-theme origami orgtbl-join orgtbl-ascii-plot org-ref org-plus-contrib org-beautify-theme org-alert memoize js2-mode green-phosphor-theme god-mode flyspell-correct-popup flycheck django-snippets django-mode django-manage column-enforce-mode clojure-mode base16-theme avy auctex ample-theme 0blayout)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

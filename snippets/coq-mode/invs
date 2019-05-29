@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: invs
+# key: invs
+# --
+inversion $1. subst. $0

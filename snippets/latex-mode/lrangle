@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lrangle
+# key: <
+# --
+\langle $1 \rangle$0

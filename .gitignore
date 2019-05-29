@@ -1,0 +1,15 @@
+# Ignore backups and autosaves
+*~
+*#*
+
+# Ignore the desktops
+.emacs.desktop*
+ac-comphist.dat
+
+# Ignore other folders
+**/auto-save-list/**
+**/elpa/**
+**/eshell/**
+**/matlab/**
+**/server/**
+**/verilog/**

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: expec
+# key: exp
+# --
+\mathbb{E}\sbr{$1}$0

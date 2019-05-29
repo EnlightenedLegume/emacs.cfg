@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gen
+# key: gen
+# --
+generalize dependent $1.$0

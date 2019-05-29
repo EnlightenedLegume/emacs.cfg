@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: emph
+# key: emph
+# binding: <C-i>
+# --
+\emph{$1}$0

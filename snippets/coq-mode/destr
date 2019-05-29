@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: destr
+# key: destr
+# --
+destruct $1.$0
