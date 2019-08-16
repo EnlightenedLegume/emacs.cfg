@@ -21,6 +21,7 @@
 
 ;; load up other packages
 (require 'org-alert)
+(setq alert-default-style 'libnotify)
 (require 'org-ref)
 
 ;; Org-mode comments
